@@ -37,10 +37,10 @@ int Strncmp(char *s,char *t,int n)
     }
     if(n1==n2) // if both Equal
     return 0;
-    if(n1<n2) // if n2 is Greater than n1
+    if(n1<n2) // if n2 is greater than n1
     return 1;
     else
-    return -1; // if n2 is Less than n1
+    return -1; // if n2 is less than n1
 }
 //function to concatinate two strings
 void Strncat(char *s, char*  t )
