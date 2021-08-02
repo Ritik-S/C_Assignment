@@ -24,8 +24,7 @@ int Strncmp(char *s,char *t,int n)
 
 
 
-    int idx = 0;
-    while(idx<n&&idx<min(n1,n2))
+    for(int idx = 0; idx < min(n , min( n1 , n2 )) ;++idx)
     {
         // if characters are not Equal
         if(*(s+idx)!=*(t + idx))
