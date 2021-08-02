@@ -29,7 +29,7 @@ int Strncmp(char *s,char *t)
     while(idx<min(n1,n2))
     {
         // if characters are not Equal
-        if((s+idx)!=(t + idx))
+        if(*(s+idx)!=*(t + idx))
         {
             // return ASCII value difference
             return (int)(*(s+idx) - *(t + idx));
