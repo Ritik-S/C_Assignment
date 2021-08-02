@@ -10,25 +10,44 @@
 #include<stdio.h> 
 #include<string.h>
 int maxN=1e5;
-//Strncmp function to compare two strings if they are equal or not
-int Strncmp(char *s , char *t)
+int min(int n, int m)
 {
-	if(strlen(s) != strlen(t))// if length of the given two string is not equal they can never be equal 
-	{
-		return 1;
-	}
-	for(int i = 0 ; i < strlen(s) ; ++i)
-	{
-	      if(s[i] != t[i])//if any character doesn't match return -1
-	   	return 1;
-	}
-	return 0;//returns 0 if strings are equal
+     if(n<m)
+     return n;
+     else
+     return m;
+}
+//Strncmp function to compare two strings if they are equal or not
+int Strncmp(char *s,char *t)
+{
+    int n1=strlen(s);
+    int n2=strlen(t);
+    
+    
+    
+    int idx = 0;
+    while(idx<min(n1,n2))
+    {
+        // if characters are not Equal
+        if((s+idx)!=(t + idx))
+        {
+            // return ASCII value difference
+            return (int)(*(s+idx) - *(t + idx));
+        }
+        idx++;
+    }
+    if(n1==n2) // if both Equal
+    return 0;
+    if(n1<n2) // if n2 is Greater than n1
+    return 1;
+    else
+    return -1; // if n2 is Less than n1
 }
 //function to concatinate two strings
 void Strncat(char *s, char*  t )
 {
 	int n = strlen(s);//length of string s
-	for(int i = 0; i < strlen(t) ; ++i)//adding characters of string t in front of string s
+	for(int i = 0; i < (int)strlen(t) ; ++i)//adding characters of string t in front of string s
 	{
 		s[n] = t[i];
 		n++;//increasing length of string s while we are adding characters of t to it
@@ -39,7 +58,7 @@ void Strncpy (char *s, char*  t , size_t n)
 {
 	if(strlen(t) < n)//if n is greater than length of string then copy all characters of string t
 	{
-		for(int i = 0 ; i < strlen(t) ; ++i)
+		for(int i = 0 ; i < (int)strlen(t) ; ++i)
 		{
 			s[i] = t[i];
 		}
@@ -71,11 +90,13 @@ int main()
 	printf("Enter two strings : ");
 	scanf("%s %s",s,t);
 	if(Strncmp(s,t) == 0)//strncmp returns 0 if strings are equal
-           printf("Both Strings are equal\n");
-	else
-           printf("Both Strings are not equal\n");
+        printf("Both Strings are equal\n");
+	else if(Strncmp(s,t) > 0)
+        printf("String 1 is larger\n");
+        else 
+            printf("String 2 is larger\n");  
         char cpy[maxN];//copy of string s
-	for(int i = 0; i < strlen(s) ; ++i) {
+	for(int i = 0; i <(int) strlen(s) ; ++i) {
 		    cpy[i]=s[i];
 	    }
 	printf("Concatinating %s and %s = ",s,t);
