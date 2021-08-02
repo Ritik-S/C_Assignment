@@ -1,4 +1,3 @@
-
 /*
    * Compilation :- gcc string_function.c
    * Execution :- ./a.out
@@ -7,7 +6,7 @@
    * Assignment 1-C
    */
 
-#include<stdio.h> 
+#include<stdio.h>
 #include<string.h>
 int maxN=1e5;
 int min(int n, int m)
@@ -17,16 +16,16 @@ int min(int n, int m)
      else
      return m;
 }
-//Strncmp function to compare two strings if they are equal or not
-int Strncmp(char *s,char *t)
+//Strncmp function to compare  first n character of two strings
+int Strncmp(char *s,char *t,int n)
 {
     int n1=strlen(s);
     int n2=strlen(t);
-    
-    
-    
+
+
+
     int idx = 0;
-    while(idx<min(n1,n2))
+    while(idx<n&&idx<min(n1,n2))
     {
         // if characters are not Equal
         if(*(s+idx)!=*(t + idx))
@@ -53,7 +52,7 @@ void Strncat(char *s, char*  t )
 		n++;//increasing length of string s while we are adding characters of t to it
 	}
 }
-//function to copy first n characters of string t to string n 
+//function to copy first n characters of string t to string n
 void Strncpy (char *s, char*  t , size_t n)
 {
 	if(strlen(t) < n)//if n is greater than length of string then copy all characters of string t
@@ -62,16 +61,16 @@ void Strncpy (char *s, char*  t , size_t n)
 		{
 			s[i] = t[i];
 		}
-	         
+
 	}
-	else 
+	else
 	{
 
             for(int i = 0 ; i < n ; ++i)//simply copying n characters to string s
                 {
                         s[i] = t[i];
                 }
-                
+
 
 	}
 
@@ -83,18 +82,18 @@ int main()
 	int n;
         printf("Enter n = ");
 	scanf("%d",&n);
-	    
+
 
 
 
 	printf("Enter two strings : ");
 	scanf("%s %s",s,t);
-	if(Strncmp(s,t) == 0)//strncmp returns 0 if strings are equal
+	if(Strncmp(s,t,n) == 0)//strncmp returns 0 if strings are equal
         printf("Both Strings are equal\n");
-	else if(Strncmp(s,t) > 0)
+	else if(Strncmp(s,t,n) > 0)
         printf("String 1 is larger\n");
-        else 
-            printf("String 2 is larger\n");  
+        else
+            printf("String 2 is larger\n");
         char cpy[maxN];//copy of string s
 	for(int i = 0; i <(int) strlen(s) ; ++i) {
 		    cpy[i]=s[i];
@@ -104,6 +103,6 @@ int main()
         printf("%s\n",cpy);
         Strncpy(s,t,n);//copying n characters of t to s
 	printf("Two strings after we copy n characters are : s = %s\n t = %s\n",s,t);
-	
+
 
 }
